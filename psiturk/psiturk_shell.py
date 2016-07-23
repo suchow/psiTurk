@@ -1881,16 +1881,16 @@ def run(cabinmode=False, script=None):
         shell.check_offline_configuration()
     else:
         amt_services = MTurkServices(
-            config.get('AWS Access', 'aws_access_key_id'), \
-            config.get('AWS Access', 'aws_secret_access_key'),
+            os.getenv('aws_access_key_id', config.get("AWS Access", "aws_access_key_id")),
+            os.getenv('aws_secret_access_key', config.get("AWS Access", "aws_secret_access_key")),
             config.getboolean('Shell Parameters', 'launch_in_sandbox_mode'))
         aws_rds_services = RDSServices(
-            config.get('AWS Access', 'aws_access_key_id'), \
-            config.get('AWS Access', 'aws_secret_access_key'),
+            os.getenv('aws_access_key_id', config.get("AWS Access", "aws_access_key_id")),
+            os.getenv('aws_secret_access_key', config.get("AWS Access", "aws_secret_access_key")),
             config.get('AWS Access', 'aws_region'))
         web_services = PsiturkOrgServices(
-            config.get('psiTurk Access', 'psiturk_access_key_id'),
-            config.get('psiTurk Access', 'psiturk_secret_access_id'))
+            os.getenv('psiturk_access_key_id', config.get("psiTurk Access", "psiturk_access_key_id")),
+            os.getenv('psiturk_secret_access_id', config.get("psiTurk Access", "psiturk_secret_access_id")))
         shell = PsiturkNetworkShell(
             config, amt_services, aws_rds_services, web_services, server, \
             config.getboolean('Shell Parameters', 'launch_in_sandbox_mode'))

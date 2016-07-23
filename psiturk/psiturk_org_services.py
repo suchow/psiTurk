@@ -245,8 +245,8 @@ class TunnelServices(object):
     def __init__(self):
         config = PsiturkConfig()
         config.load_config()
-        self.access_key = config.get('psiTurk Access', 'psiturk_access_key_id')
-        self.secret_key = config.get('psiTurk Access', 'psiturk_secret_access_id')
+        self.access_key = os.getenv('psiturk_access_key_id', config.get("psiTurk Access", "psiturk_access_key_id"))
+        self.secret_key = os.getenv('psiturk_secret_access_id', config.get("psiTurk Access", "psiturk_secret_access_id"))
         self.local_port = config.getint('Server Parameters', 'port')
         self.is_open = False
         self.tunnel_port = 8000  # Set by tunnel server
