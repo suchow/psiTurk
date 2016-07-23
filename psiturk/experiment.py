@@ -35,14 +35,10 @@ CONFIG = PsiturkConfig()
 CONFIG.load_config()
 
 # Setup logging
-LOG_FILE_PATH = os.path.join(os.getcwd(), CONFIG.get("Server Parameters", \
-    "logfile"))
-
 LOG_LEVELS = [logging.DEBUG, logging.INFO, logging.WARNING, logging.ERROR,
               logging.CRITICAL]
 LOG_LEVEL = LOG_LEVELS[CONFIG.getint('Server Parameters', 'loglevel')]
-logging.basicConfig(filename=LOG_FILE_PATH, format='%(asctime)s %(message)s',
-                    level=LOG_LEVEL)
+logging.basicConfig(format='%(asctime)s %(message)s', level=LOG_LEVEL)
 
 # Status codes
 NOT_ACCEPTED = 0
