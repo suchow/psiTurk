@@ -267,7 +267,7 @@ class PsiturkShell(Cmd, object):
             + "/ad"
         else:
             base_url = "http://" + self.config.get('Server Parameters', 'host')\
-            + ":" + self.config.get('Server Parameters', 'port') + "/ad"
+            + ":" + os.getenv('PORT', config.get("Server Parameters", "port")) + "/ad"
 
         launch_url = base_url + "?assignmentId=debug" \
             + str(self.random_id_generator()) + "&hitId=debug" \
@@ -1095,7 +1095,7 @@ class PsiturkNetworkShell(PsiturkShell):
             port = str(self.tunnel.tunnel_port)  # Set by tunnel server.
         else:
             ip_address = str(self.web_services.get_my_ip())
-            port = str(self.config.get('Server Parameters', 'port'))
+            port = str(os.getenv('PORT', self.config.get("Server Parameters", "port")))
         ad_content = {
             'psiturk_external': True,
             'server': ip_address,
@@ -1749,11 +1749,11 @@ class PsiturkNetworkShell(PsiturkShell):
         else:
             base_url = "http://" + self.config.get('Server Parameters',
                                                    'host') + \
-                ":" + self.config.get('Server Parameters', 'port') + "/ad"
+                ":" + os.getenv('PORT', self.config.get("Server Parameters", "port")) + "/ad"
 
         my_ip = self.web_services.get_my_ip()
         remote_url = "http://" + my_ip + ":" + \
-            self.config.get('Server Parameters', 'port') + "/ad"
+            os.getenv('PORT', self.config.get("Server Parameters", "port")) + "/ad"
 
         launch_url = base_url + "?assignmentId=debug" + \
             str(self.random_id_generator()) \

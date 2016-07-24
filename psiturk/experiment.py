@@ -683,7 +683,7 @@ def regularpage(foldername=None, pagename=None):
 def run_webserver():
     ''' Run web server '''
     host = "0.0.0.0"
-    port = CONFIG.getint('Server Parameters', 'port')
+    port = os.getenv('PORT', CONFIG.get("Server Parameters", "port"))
     print "Serving on ", "http://" +  host + ":" + str(port)
     app.run(debug=True, host=host, port=port)
 
