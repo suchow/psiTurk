@@ -1098,8 +1098,8 @@ class PsiturkNetworkShell(PsiturkShell):
             port = str(os.getenv('PORT', self.config.get("Server Parameters", "port")))
         ad_content = {
             'psiturk_external': True,
-            'server': ip_address,
-            'port': port,
+            'server': os.getenv('HOST', self.config.get("Server Parameters", "host")),
+            'port': 80,
             'browser_exclude_rule': str(self.config.get('HIT Configuration', 'browser_exclude_rule')),
             'is_sandbox': int(self.sandbox),
             'ad_html': ad_html,
